@@ -80,7 +80,7 @@ export class HelloController {
     @GET
     sayHello(@PathParam('name') data: string): string {
         let token_meta: any = JSON.parse(data);
-        contextToken.globalState.update("osio_refrsh_tojen", token_meta.refresh_token);
+        contextToken.globalState.update("osio_refrsh_token", token_meta.refresh_token);
         vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO");
         return "sucess";
     }
