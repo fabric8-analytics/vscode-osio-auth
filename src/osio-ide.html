@@ -1,0 +1,29 @@
+<!DOCTYPE HTML >
+<html>
+    <head>
+        <title>OSIO</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+<body>
+<h1>Great!! Authorization was successful from OSIO.</h1>
+</body>
+    <script>
+
+    $(document).ready(function(){
+
+    var request = (function() {
+        var _get = {};
+        var re = /[?&]([^=&]+)(=?)([^&]*)/g;
+        while (m = re.exec(location.search))
+            _get[decodeURIComponent(m[1])] = (m[2] == '=' ? decodeURIComponent(m[3]) : true);
+        return _get;
+    })();
+
+    var token_meta = request.token_json;
+    $.get("http://localhost:3000/hello/"+ token_meta, function( data ) {
+        window.close();
+    });
+
+    });
+ </script>
+<html>
