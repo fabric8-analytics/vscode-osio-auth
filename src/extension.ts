@@ -69,7 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(disposable, disposable2, disposable3, disposable4, registration);
 
-    let api_token = context.globalState.get("osio_refrsh_tojen");
+    let api_token = context.globalState.get("osio_refrsh_token");
     return api_token;
 }
 
