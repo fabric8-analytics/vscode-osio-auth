@@ -1,8 +1,8 @@
-import * as express from 'express';
-import {GET, Path, PathParam, Server } from 'typescript-rest';
-import * as http from 'http';
-import * as path from 'path';
-import * as cors from 'cors';
+import * as express from "express";
+import {GET, Path, PathParam, Server } from "typescript-rest";
+import * as http from "http";
+import * as path from "path";
+import * as cors from "cors";
 import * as vscode from "vscode";
 
 let contextToken: any;
@@ -16,8 +16,8 @@ export class ApiServer {
     constructor(context: any) {
         this.app = express();
         this.config();
-        contextToken = context;
-        Server.buildServices(this.app, HelloController);
+        contextToken = context || "";
+        Server.buildServices(this.app, TokenController);
     }
 
     /**
@@ -25,9 +25,7 @@ export class ApiServer {
      */
     private config(): void {
         // Native Express configuration
-        // this.app.use( bodyParser.urlencoded( { extended: false } ) );
-        // this.app.use( bodyParser.json( { limit: '1mb' } ) );
-        this.app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+        this.app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
         this.app.use(cors());
     }
 
@@ -70,15 +68,15 @@ export class ApiServer {
 /**
  * This is a demo operation to show how to use typescript-rest library.
  */
-@Path('/hello')
-export class HelloController {
+@Path('/refreshtoken')
+export class TokenController {
     /**
      * Send a greeting message.
      * @param name The name that will receive our greeting message
      */
-    @Path(':name')
+    @Path(':token')
     @GET
-    sayHello(@PathParam('name') data: string): string {
+    sayHello(@PathParam('token') data: string): string {
         let token_meta: any = JSON.parse(data);
         contextToken.globalState.update("osio_refrsh_token", token_meta.refresh_token);
         vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO");
