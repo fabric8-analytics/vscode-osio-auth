@@ -1,28 +1,26 @@
 import * as vscode from "vscode";
 
 export class Utility {
-    public static getUriOfActiveEditor() {
-        //const fileName = vscode.window.activeTextEditor.document.fileName;
-        const options = vscode.workspace.getConfiguration("previewServer");
-        const port = options.get("port") as number;
-        const proxy = options.get("proxy") as string;
-        //let relativePath = vscode.workspace.asRelativePath(fileName);
-        let myExtDir = vscode.extensions.getExtension ("redhat.osio-auth-service").extensionPath;
-        let relativePath = "out/src/osio-ide.html";
+    // public static getUriOfActiveEditor() {
+    //     const options = vscode.workspace.getConfiguration("previewServer");
+    //     const port = options.get("port") as number;
+    //     const proxy = options.get("proxy") as string;
+    //     let myExtDir = vscode.extensions.getExtension ("redhat.osio-auth-service").extensionPath;
+    //     let relativePath = "out/src/osio-ide.html";
 
-        if (vscode.workspace.rootPath === undefined) {
-            let paths = relativePath.split("/");
-            relativePath = paths[paths.length - 1];
-        }
+    //     if (vscode.workspace.rootPath === undefined) {
+    //         let paths = relativePath.split("/");
+    //         relativePath = paths[paths.length - 1];
+    //     }
 
-        if (proxy === "") {
-            return vscode.Uri.parse(`http://localhost:${port}/${relativePath}`);
-        }
+    //     if (proxy === "") {
+    //         return vscode.Uri.parse(`http://localhost:${port}/${relativePath}`);
+    //     }
 
-        let uri = vscode.Uri.parse(`http://${proxy}`);
-        let host = uri.authority.split(":")[0];
-        return vscode.Uri.parse(`http://${host}:3000/${uri.path}`);
-    }
+    //     let uri = vscode.Uri.parse(`http://${proxy}`);
+    //     let host = uri.authority.split(":")[0];
+    //     return vscode.Uri.parse(`http://${host}:3000/${uri.path}`);
+    // }
 
     public static setRandomPort() {
         const options = vscode.workspace.getConfiguration("previewServer");

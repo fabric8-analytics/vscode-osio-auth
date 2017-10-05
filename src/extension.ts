@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
     // instantiate web server
     let apiServer = new ApiServer(context);
 
-    let disposable2: any = vscode.commands.registerCommand("extension.launch", () => {
+    let disposable1: any = vscode.commands.registerCommand("extension.osioAuthorize", () => {
         // start web server
         startServer();
         apiServer.start();
@@ -21,7 +21,13 @@ export function activate(context: vscode.ExtensionContext) {
 
     });
 
+    let disposable2: any = vscode.commands.registerCommand("extension.osioUnauthorize", () => {
+        context.globalState.update("osio_refrsh_token", "");
+        vscode.window.showInformationMessage("Successfully unauthorized extension form OSIO.");
+    });
+
     let disposable3: any = vscode.commands.registerCommand("extension.stop", () => {
+        apiServer.stop();
         Server.stop();
         vscode.window.showInformationMessage("Stop the Web Server successfully.");
     });
@@ -31,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showInformationMessage("Resume the Web Server.");
     });
 
-    context.subscriptions.push(disposable2, disposable3, disposable4);
+    context.subscriptions.push(disposable1, disposable2, disposable3, disposable4);
 
     // Stop the servers
     apiServer.stop();

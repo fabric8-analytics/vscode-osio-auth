@@ -68,15 +68,15 @@ export class ApiServer {
 /**
  * This is a demo operation to show how to use typescript-rest library.
  */
-@Path('/refreshtoken')
+@Path("/refreshtoken")
 export class TokenController {
     /**
      * Send a greeting message.
      * @param name The name that will receive our greeting message
      */
-    @Path(':token')
+    @Path(":token")
     @GET
-    sayHello(@PathParam('token') data: string): string {
+    sayHello(@PathParam("token") data: string): string {
         let token_meta: any = JSON.parse(data);
         contextToken.globalState.update("osio_refrsh_token", token_meta.refresh_token);
         vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO");

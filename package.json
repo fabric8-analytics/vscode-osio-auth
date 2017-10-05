@@ -32,8 +32,8 @@
   ],
   "activationEvents": [
     "*",
-    "onCommand:extension.preview",
-    "onCommand:extension.launch",
+    "onCommand:extension.osioUnauthorize",
+    "onCommand:extension.osioAuthorize",
     "onCommand:extension.stop",
     "onCommand:extension.resume"
   ],
@@ -70,11 +70,11 @@
     },
     "commands": [
       {
-        "command": "extension.preview",
+        "command": "extension.osioUnauthorize",
         "title": "OSIO-AUTH: Unauthorize OSIO Services"
       },
       {
-        "command": "extension.launch",
+        "command": "extension.osioAuthorize",
         "title": "OSIO-AUTH: Authorize OSIO Services"
       },
       {
@@ -88,11 +88,11 @@
     ],
     "keybindings": [
       {
-        "command": "extension.preview",
+        "command": "extension.osioUnauthorize",
         "key": "ctrl+shift+p"
       },
       {
-        "command": "extension.launch",
+        "command": "extension.osioAuthorize",
         "key": "ctrl+shift+l"
       },
       {
@@ -107,21 +107,21 @@
     "menus": {
       "explorer/context": [
         {
-          "command": "extension.preview",
+          "command": "extension.osioUnauthorize",
           "when": "resourceLangId == html"
         },
         {
-          "command": "extension.launch",
+          "command": "extension.osioAuthorize",
           "when": "resourceLangId == html"
         }
       ],
       "editor/context": [
         {
-          "command": "extension.preview",
+          "command": "extension.osioUnauthorize",
           "when": "resourceLangId == html"
         },
         {
-          "command": "extension.launch",
+          "command": "extension.osioAuthorize",
           "when": "resourceLangId == html"
         }
       ]
