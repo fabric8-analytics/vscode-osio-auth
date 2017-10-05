@@ -144,11 +144,12 @@
     "mocha": "^2.3.3",
     "tslint": "^4.3.1",
     "typescript": "^2.1.5",
-    "vscode": "^1.0.3"
+    "vscode": "1.1.4"
   },
   "dependencies": {
-    "@types/express": "^4.0.37",
+    "@types/express": "4.0.37",
     "browser-sync": "^2.18.8",
+    "express": "^4.16.1",
     "typescript": "^2.1.5",
     "typescript-rest": "^1.1.2"
   }
