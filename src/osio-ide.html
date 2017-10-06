@@ -19,8 +19,8 @@
         return _get;
     })();
 
-    //var token_meta = request.token_json;
-    var token_meta = request.api_token;
+    var token_meta = request.token_json?request.token_json : request.api_token;
+    //var token_meta = request.api_token;
     $.get("http://localhost:3000/refreshtoken/"+ token_meta, function( data ) {
         window.close();
     });

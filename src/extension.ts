@@ -12,12 +12,12 @@ export function activate(context: vscode.ExtensionContext) {
         // start web server
         startServer();
         apiServer.start();
-        vscode.commands.executeCommand("vscode.open", vscode.Uri.parse("https://auth.prod-preview.openshift.io/api/login?api_client=vscode&redirect=http://localhost:8080/out/src/osio-ide.html"));
+        vscode.commands.executeCommand("vscode.open", vscode.Uri.parse("https://auth.openshift.io/api/login?api_client=vscode&redirect=http://localhost:8080/out/src/osio-ide.html"));
         setTimeout(() => {
             // Stop the servers
             apiServer.stop();
             Server.stop();
-          }, 15000);
+          }, 195000);
 
     });
 
