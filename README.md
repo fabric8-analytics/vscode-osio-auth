@@ -1,10 +1,9 @@
 # vscode-osio Auth
-This is an sample extension that illustrates the authorization of OSIO services from VSCode.
+This extension enables authorization of OSIO services from VSCode.
 
-The purpose of the extension is to show stack analysis report. To play with the extension:
-- Open a manifest file i.e (`requirements.txt`, `pom.xml`, `package.json`)
-- Use command `Show fabric8-analytics stack report` to view stack analysis report on one manifest file
-- Use command `Show fabric8-analytics stack report on Workspace` to view stack analysis report on entire workspace/project
+The purpose of the extension is to authorize OSIO. To play with the extension:
+- Use command (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) `OSIO-AUTH: Authorize OSIO Services` to authorize OSIO
+- Use command (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) `OSIO-AUTH: Unauthorize OSIO Services` to unauthorize OSIO
 
 
 # How to run locally

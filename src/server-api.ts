@@ -11,12 +11,15 @@ export class ApiServer {
 
     private app: express.Application;
     private server: http.Server = null;
-    public PORT: number = process.env.PORT || 3000;
+    // dynamic ports (49152–65535)
+    public PORT: number = 3009;
+    //process.env.APIPORT || 3000;
 
     constructor(context: any) {
         this.app = express();
         this.config();
         contextToken = context || "";
+        process.env.APIPORT = this.PORT;
         Server.buildServices(this.app, TokenController);
     }
 
@@ -78,7 +81,8 @@ export class TokenController {
     @GET
     sayHello(@PathParam("token") data: string): string {
         let token_meta: any = JSON.parse(data);
-        contextToken.globalState.update("osio_refrsh_token", token_meta.refresh_token);
+        //contextToken.globalState.update("osio_refrsh_token", token_meta.refresh_token);
+        contextToken.globalState.update("osio_token_meta", token_meta);
         vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO");
         return "sucess";
     }

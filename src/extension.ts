@@ -3,8 +3,9 @@ import * as vscode from "vscode";
 import { Server } from "./server";
 import { Utility } from "./utility";
 import { ApiServer } from "./server-api";
+import { authextension } from './authextension';
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) : any{
     // instantiate web server
     let apiServer = new ApiServer(context);
 
@@ -17,12 +18,12 @@ export function activate(context: vscode.ExtensionContext) {
             // Stop the servers
             apiServer.stop();
             Server.stop();
-          }, 195000);
+          }, 55000);
 
     });
 
     let disposable2: any = vscode.commands.registerCommand("extension.osioUnauthorize", () => {
-        context.globalState.update("osio_refrsh_token", "");
+        context.globalState.update("osio_token_meta", "");
         vscode.window.showInformationMessage("Successfully unauthorized extension form OSIO.");
     });
 
@@ -43,8 +44,16 @@ export function activate(context: vscode.ExtensionContext) {
     apiServer.stop();
     Server.stop();
 
-    let api_token = context.globalState.get("osio_refrsh_token");
-    return api_token;
+    //let api_token = context.globalState.get("osio_refrsh_token");
+    let api_token_meta = context.globalState.get("osio_token_meta");
+    if(api_token_meta){
+        authextension.authorize_OSIO(api_token_meta, context, (data:any) => {
+        let api_token_cur = context.globalState.get("osio_token_meta");
+        return api_token_cur;
+        });
+    } else {
+        return null;
+    }
 }
 
 function startServer() {
