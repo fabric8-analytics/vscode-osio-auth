@@ -12,7 +12,7 @@ export class ApiServer {
     private app: express.Application;
     private server: http.Server = null;
     // dynamic ports (49152–65535)
-    public PORT: number = 3009;
+    public PORT: number = 45036;
     //process.env.APIPORT || 3000;
 
     constructor(context: any) {

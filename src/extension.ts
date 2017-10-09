@@ -11,11 +11,13 @@ export function activate(context: vscode.ExtensionContext) : any{
 
     let disposable1: any = vscode.commands.registerCommand("extension.osioAuthorize", () => {
         // start web server
+        console.log("server started");
         startServer();
         apiServer.start();
-        vscode.commands.executeCommand("vscode.open", vscode.Uri.parse("https://auth.openshift.io/api/login?api_client=vscode&redirect=http://localhost:8080/out/src/osio-ide.html"));
+        vscode.commands.executeCommand("vscode.open", vscode.Uri.parse("https://auth.openshift.io/api/login?api_client=vscode&redirect=http://localhost:45032/out/src/osio-ide.html"));
         setTimeout(() => {
             // Stop the servers
+            console.log("server stopped");
             apiServer.stop();
             Server.stop();
           }, 55000);

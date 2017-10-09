@@ -21,7 +21,7 @@
 
     var token_meta = request.token_json?request.token_json : request.api_token;
     //var token_meta = request.api_token;
-    var api_port = 3009;
+    var api_port = 45036;
     $.get("http://localhost:"+api_port+"/refreshtoken/"+ token_meta, function( data ) {
         window.close();
     });

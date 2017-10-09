@@ -53,7 +53,7 @@
             "number",
             "null"
           ],
-          "default": 8080,
+          "default": 45032,
           "description": "Port number of the Web Server."
         },
         "previewServer.proxy": {
