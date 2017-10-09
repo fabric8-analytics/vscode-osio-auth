@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import * as vscode from "vscode";
 import * as browserSync from "browser-sync";
-import { Server } from "../src/server";
+import { ServerHTML } from "../src/server";
 
 suite("OSIO Auth Extension", () => {
 
@@ -19,8 +19,8 @@ suite("OSIO Auth Extension", () => {
 
 suite("Server Tests", () => {
     test("start server", () => {
-        Server.start(".", 8888, true);
+        ServerHTML.start(".", 8888, true);
         assert.ok(browserSync.has("osio-auth-service"));
-        Server.stop();
+        ServerHTML.stop();
     });
 });

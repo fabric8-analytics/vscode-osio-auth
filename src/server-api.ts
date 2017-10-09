@@ -4,46 +4,53 @@ import * as http from "http";
 import * as path from "path";
 import * as cors from "cors";
 import * as vscode from "vscode";
+import { ServerHTML } from "./server";
 
-let contextToken: any;
+//let contextToken: any;
 
 export class ApiServer {
 
-    private app: express.Application;
-    private server: http.Server = null;
+    public static app: express.Application;
+    public static server: http.Server = null;
+    public static contextToken: any;
     // dynamic ports (49152–65535)
-    public PORT: number = 45036;
+    public static PORT: number = 45036;
     //process.env.APIPORT || 3000;
 
-    constructor(context: any) {
-        this.app = express();
-        this.config();
-        contextToken = context || "";
-        process.env.APIPORT = this.PORT;
-        Server.buildServices(this.app, TokenController);
-    }
+    // constructor(context: any) {
+    //     this.app = express();
+    //     this.config();
+    //     contextToken = context || "";
+    //     process.env.APIPORT = this.PORT;
+    //     Server.buildServices(this.app, TokenController);
+    // }
 
     /**
      * Configure the express app.
      */
-    private config(): void {
+    public  static  config(): void {
         // Native Express configuration
-        this.app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
-        this.app.use(cors());
+        ApiServer.app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
+        ApiServer.app.use(cors());
     }
 
     /**
      * Start the server
      * @returns {Promise<any>}
      */
-    public start(): Promise<any> {
+    public  static start(context: any): Promise<any> {
+        ApiServer.app = express();
+        ApiServer.config();
+        ApiServer.contextToken = context || "";
+        process.env.APIPORT = ApiServer.PORT;
+        Server.buildServices(ApiServer.app, TokenController);
         return new Promise<any>((resolve, reject) => {
-            this.server = this.app.listen(this.PORT, (err: any) => {
+            ApiServer.server = ApiServer.app.listen(ApiServer.PORT, (err: any) => {
                 if (err) {
                     return reject(err);
                 }
                 // tslint:disable-next-line:no-console
-                console.log(`Listening to http://${this.server.address().address}:${this.server.address().port}`);
+                console.log(`Listening to http://${ApiServer.server.address().address}:${ApiServer.server.address().port}`);
                 return resolve();
             });
         });
@@ -54,10 +61,10 @@ export class ApiServer {
      * Stop the server (if running).
      * @returns {Promise<boolean>}
      */
-    public stop(): Promise<boolean> {
+    public static stop(): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {
-            if (this.server) {
-                this.server.close(() => {
+            if (ApiServer.server) {
+                ApiServer.server.close(() => {
                     return resolve(true);
                 });
             } else {
@@ -82,8 +89,12 @@ export class TokenController {
     sayHello(@PathParam("token") data: string): string {
         let token_meta: any = JSON.parse(data);
         //contextToken.globalState.update("osio_refrsh_token", token_meta.refresh_token);
-        contextToken.globalState.update("osio_token_meta", token_meta);
+        ApiServer.contextToken.globalState.update("osio_token_meta", token_meta);
+        console.log(token_meta.refresh_token);
         vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO");
+        ServerHTML.stop();
+        ApiServer.stop();
+        console.log("================ server stopped ================");
         return "sucess";
     }
 }

@@ -1,26 +1,26 @@
 import * as vscode from "vscode";
 
-import { Server } from "./server";
+import { ServerHTML } from "./server";
 import { Utility } from "./utility";
 import { ApiServer } from "./server-api";
 import { authextension } from './authextension';
 
 export function activate(context: vscode.ExtensionContext) : any{
     // instantiate web server
-    let apiServer = new ApiServer(context);
+    //let apiServer = new ApiServer(context);
 
     let disposable1: any = vscode.commands.registerCommand("extension.osioAuthorize", () => {
         // start web server
-        console.log("server started");
+        console.log(">>>>>>>>>>>>>>>>>>server started<<<<<<<<<<<<<<<<");
         startServer();
-        apiServer.start();
+        ApiServer.start(context);
         vscode.commands.executeCommand("vscode.open", vscode.Uri.parse("https://auth.openshift.io/api/login?api_client=vscode&redirect=http://localhost:45032/out/src/osio-ide.html"));
-        setTimeout(() => {
-            // Stop the servers
-            console.log("server stopped");
-            apiServer.stop();
-            Server.stop();
-          }, 55000);
+        // setTimeout(() => {
+        //     // Stop the servers
+        //     console.log("server stopped");
+        //     ApiServer.stop();
+        //     ServerHTML.stop();
+        //   }, 55000);
 
     });
 
@@ -30,8 +30,8 @@ export function activate(context: vscode.ExtensionContext) : any{
     });
 
     let disposable3: any = vscode.commands.registerCommand("extension.stop", () => {
-        apiServer.stop();
-        Server.stop();
+        ApiServer.stop();
+        ServerHTML.stop();
         vscode.window.showInformationMessage("Stop the Web Server successfully.");
     });
 
@@ -43,8 +43,8 @@ export function activate(context: vscode.ExtensionContext) : any{
     context.subscriptions.push(disposable1, disposable2, disposable3, disposable4);
 
     // Stop the servers
-    apiServer.stop();
-    Server.stop();
+    ApiServer.stop();
+    ServerHTML.stop();
 
     //let api_token = context.globalState.get("osio_refrsh_token");
     let api_token_meta = context.globalState.get("osio_token_meta");
@@ -66,14 +66,14 @@ function startServer() {
     const isSync = options.get("sync") as boolean;
     const rootPath = vscode.workspace.rootPath || Utility.getOpenFilePath(vscode.window.activeTextEditor.document.fileName);
 
-    Server.start(rootPath, port, isSync, proxy);
+    ServerHTML.start(rootPath, port, isSync, proxy);
 }
 
 function resumeServer() {
-    Server.stop();
+    ServerHTML.stop();
     startServer();
 }
 
 export function deactivate() {
-    Server.stop();
+    ServerHTML.stop();
 }

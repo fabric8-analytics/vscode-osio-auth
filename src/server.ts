@@ -1,7 +1,7 @@
 import * as browserSync from "browser-sync";
 import * as vscode from "vscode";
 
-export class Server {
+export class ServerHTML {
 
     public static start(rootPath: string, port: number, isSync: boolean, proxy = "") {
         // get browserSync instance.
