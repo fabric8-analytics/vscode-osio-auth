@@ -89,8 +89,9 @@ export class TokenController {
     sayHello(@PathParam("token") data: string): string {
         let token_meta: any = JSON.parse(data);
         //contextToken.globalState.update("osio_refrsh_token", token_meta.refresh_token);
+        let cur_api_ts: Date = new Date();
+        token_meta["api_timestamp"] = cur_api_ts;
         ApiServer.contextToken.globalState.update("osio_token_meta", token_meta);
-        console.log(token_meta.refresh_token);
         vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO");
         ServerHTML.stop();
         ApiServer.stop();
