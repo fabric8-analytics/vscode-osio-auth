@@ -1,5 +1,19 @@
-# vscode-osio Auth
+# vscode OSIO Auth
 This extension enables authorization of OSIO services from VSCode.
+
+
+Quick Start
+============
+1. Install the Extension
+2. Extension is activated when you open a workspace
+
+Features
+=========
+![ screencast ](images/authOsio.png)
+
+* Maven pom.xml project support
+* Basic Gradle Java project support
+* As you type reporting of parsing and compilation errors
 
 The purpose of the extension is to authorize OSIO. To play with the extension:
 - Use command (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) `OSIO-AUTH: Authorize OSIO Services` to authorize OSIO
