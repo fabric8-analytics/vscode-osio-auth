@@ -1,5 +1,5 @@
 # vscode OSIO Auth
-=====================
+
 This extension enables authorization of OSIO services from VSCode.
 
 
