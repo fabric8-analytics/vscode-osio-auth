@@ -1,4 +1,5 @@
 # vscode OSIO Auth
+=====================
 This extension enables authorization of OSIO services from VSCode.
 
 
@@ -11,13 +12,21 @@ Features
 =========
 ![ screencast ](images/authOsio.png)
 
-* Maven pom.xml project support
-* Basic Gradle Java project support
-* As you type reporting of parsing and compilation errors
+* This extension enables authorization of OSIO services from VSCode.
 
-The purpose of the extension is to authorize OSIO. To play with the extension:
+
+Available commands
+==========================
+The following commands are available:
+
 - Use command (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) `OSIO-AUTH: Authorize OSIO Services` to authorize OSIO
 - Use command (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) `OSIO-AUTH: Unauthorize OSIO Services` to unauthorize OSIO
+
+
+Contributing
+===============
+This is an open source project open to anyone. Contributions are extremely welcome!
+
 
 
 # How to run locally
@@ -34,3 +43,9 @@ The purpose of the extension is to authorize OSIO. To play with the extension:
 * make changes to `test/extension.test.ts` or create new test files inside the `test` folder
     * by convention, the test runner will only consider files matching the name pattern `**.test.ts`
     * you can create folders inside the `test` folder to structure your tests any way you want
+
+
+
+Feedback
+===============
+* File a bug in [GitHub Issues](https://github.com/fabric8-analytics/vscode-osio-auth/issues).
