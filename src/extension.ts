@@ -27,6 +27,7 @@ export function activate(context: vscode.ExtensionContext) : any{
 
     let disposable2: any = vscode.commands.registerCommand("extension.osioUnauthorize", () => {
         context.globalState.update("osio_token_meta", "");
+        initAuthStatusBar("Authorize OSIO","extension.osioAuthorize");
         vscode.window.showInformationMessage("Successfully unauthorized extension form OSIO.");
     });
 
@@ -48,7 +49,6 @@ export function activate(context: vscode.ExtensionContext) : any{
     ServerHTML.stop();
 
     //let api_token = context.globalState.get("osio_refrsh_token");
-    initAuthStatusBar();
     let api_token_meta: any = context.globalState.get("osio_token_meta");
     if(api_token_meta.hasOwnProperty("refresh_token") && api_token_meta.hasOwnProperty("api_timestamp")){
 
@@ -70,6 +70,7 @@ export function activate(context: vscode.ExtensionContext) : any{
         // return api_token_cur;
         // });
     } else {
+        initAuthStatusBar("Authorize OSIO","extension.osioAuthorize");
         vscode.window.showInformationMessage("Authorize for Openshift.io","Authorize OSIO").then((selection:any) => {
             if(selection == "Authorize OSIO"){
                 triggerAuthOSIO(context);
@@ -87,12 +88,13 @@ function triggerAuthOSIO(context: any) {
         
 }
 
-function initAuthStatusBar(){
-  let f8AnalyticsStatusBarItem: vscode.StatusBarItem;
+export let f8AnalyticsStatusBarItem: vscode.StatusBarItem;
+
+export function initAuthStatusBar(title: string, cmd: string){
   f8AnalyticsStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 99);
-  f8AnalyticsStatusBarItem.command = "extension.osioAuthorize";
-  f8AnalyticsStatusBarItem.text = 'Authorize OSIO';
-  f8AnalyticsStatusBarItem.tooltip = 'Authorize OSIO';
+  f8AnalyticsStatusBarItem.command = cmd;
+  f8AnalyticsStatusBarItem.text = title;
+  f8AnalyticsStatusBarItem.tooltip = title;
   f8AnalyticsStatusBarItem.show();
 }
 

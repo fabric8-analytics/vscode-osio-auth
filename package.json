@@ -2,7 +2,7 @@
   "name": "osio-auth-service",
   "displayName": "Authorizing OSIO",
   "description": "Authorizing OSIO",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Red Hat",
   "publisher": "redhat",
   "contributors": [

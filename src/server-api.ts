@@ -5,6 +5,7 @@ import * as path from "path";
 import * as cors from "cors";
 import * as vscode from "vscode";
 import { ServerHTML } from "./server";
+import { f8AnalyticsStatusBarItem } from "./extension";
 
 //let contextToken: any;
 
@@ -95,6 +96,7 @@ export class TokenController {
         vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO");
         ServerHTML.stop();
         ApiServer.stop();
+        f8AnalyticsStatusBarItem.hide();
         console.log("================ server stopped ================");
         return "sucess";
     }
