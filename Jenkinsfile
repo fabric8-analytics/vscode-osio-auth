@@ -18,7 +18,7 @@ node('rhel7'){
 	deleteDir()
 	git url: 'https://github.com/fabric8-analytics/vscode-osio-auth.git'
 
-	stage 'install vscode-yaml build requirements'
+	stage 'install vscode-osio-auth build requirements'
 	installBuildRequirements()
 
 	stage 'Build vscode-osio-auth'
@@ -32,7 +32,7 @@ node('rhel7'){
 
 	stage "Package vscode-osio-auth"
 	def packageJson = readJSON file: 'package.json'
-	sh "vsce package -o yaml-${packageJson.version}-${env.BUILD_NUMBER}.vsix"
+	sh "vsce package -o auth-${packageJson.version}-${env.BUILD_NUMBER}.vsix"
 
 	stage 'Upload vscode-osio-auth to staging'
 	def vsix = findFiles(glob: '**.vsix')
