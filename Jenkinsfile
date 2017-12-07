@@ -5,7 +5,6 @@ def installBuildRequirements(){
 	env.PATH="${env.PATH}:${nodeHome}/bin"
 	sh "npm install -g typescript"
 	sh "npm install -g vsce"
-    sh "npm install -g rimraf"
 }
 
 def buildVscodeExtension(){
