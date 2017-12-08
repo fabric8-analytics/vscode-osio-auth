@@ -14,11 +14,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/invinciblejai/vscode-osio-auth"
+    "url": "https://github.com/fabric8-analytics/vscode-osio-auth/"
   },
   "bugs": {
-    "url": "https://github.com/invinciblejai/vscode-osio-authissues"
+    "url": "https://github.com/fabric8-analytics/vscode-osio-auth/issues"
   },
+  "icon": "icon/openshift_logo.png",
   "engines": {
     "vscode": "^1.6.0"
   },
