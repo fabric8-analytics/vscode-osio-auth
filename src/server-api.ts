@@ -93,7 +93,7 @@ export class TokenController {
         let cur_api_ts: Date = new Date();
         token_meta["api_timestamp"] = cur_api_ts;
         ApiServer.contextToken.globalState.update("osio_token_meta", token_meta);
-        vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO");
+        vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO, kindly reload your extension");
         ServerHTML.stop();
         ApiServer.stop();
         f8AnalyticsStatusBarItem.hide();

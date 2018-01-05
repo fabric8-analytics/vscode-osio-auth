@@ -9,3 +9,7 @@ images/**
 tsconfig.json
 tslint.json
 vsc-extension-quickstart.md
+**/**.tar
+**/**.tar.gz
+CONTRIBUTING.md
+**/**.vsix
