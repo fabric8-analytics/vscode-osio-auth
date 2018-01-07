@@ -25,7 +25,7 @@
   },
   "icon": "icon/openshift_logo.png",
   "engines": {
-    "vscode": "^1.6.0"
+    "vscode": "^1.18.1"
   },
   "categories": [
     "Other"
@@ -94,19 +94,19 @@
     "keybindings": [
       {
         "command": "extension.osioUnauthorize",
-        "key": "ctrl+shift+p"
+        "key": "ctrl+shift+j"
       },
       {
         "command": "extension.osioAuthorize",
-        "key": "ctrl+shift+l"
+        "key": "ctrl+shift+k"
       },
       {
         "command": "extension.stop",
-        "key": "ctrl+shift+s"
+        "key": "ctrl+shift+g"
       },
       {
         "command": "extension.resume",
-        "key": "ctrl+shift+r"
+        "key": "ctrl+shift+h"
       }
     ],
     "menus": {
@@ -148,14 +148,13 @@
     "copyfiles": "^1.2.0",
     "mocha": "^2.3.3",
     "tslint": "^4.3.1",
-    "typescript": "^2.1.5",
-    "vscode": "1.1.4"
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.6"
   },
   "dependencies": {
     "@types/express": "4.0.37",
     "browser-sync": "^2.18.8",
     "express": "^4.16.1",
-    "typescript": "^2.1.5",
     "typescript-rest": "^1.1.2"
   }
 }

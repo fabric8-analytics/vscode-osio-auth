@@ -11,23 +11,16 @@ export function activate(context: vscode.ExtensionContext) : any{
 
     let disposable1: any = vscode.commands.registerCommand("extension.osioAuthorize", () => {
         triggerAuthOSIO(context);
-        // start web server
-        // console.log(">>>>>>>>>>>>>>>>>>server started<<<<<<<<<<<<<<<<");
-        // startServer();
-        // ApiServer.start(context);
-        // vscode.commands.executeCommand("vscode.open", vscode.Uri.parse("https://auth.openshift.io/api/login?api_client=vscode&redirect=http://localhost:45032/out/src/osio-ide.html"));
-        // // setTimeout(() => {
-        //     // Stop the servers
-        //     console.log("server stopped");
-        //     ApiServer.stop();
-        //     ServerHTML.stop();
-        //   }, 55000);
-
     });
+
+    initAuthStatusBar("Openshift.io","extension.osioAuthorize");
+    let logInStatus = checkLastloggedIn();
+    console.log("------------logInStatus---------");
+    console.log(logInStatus);
 
     let disposable2: any = vscode.commands.registerCommand("extension.osioUnauthorize", () => {
         context.globalState.update("osio_token_meta", "");
-        initAuthStatusBar("Authorize OSIO","extension.osioAuthorize");
+        triggerAuthStatusBar("extension.osioAuthorize");
         vscode.window.showInformationMessage("Successfully unauthorized extension form OSIO.");
     });
 
@@ -48,36 +41,37 @@ export function activate(context: vscode.ExtensionContext) : any{
     ApiServer.stop();
     ServerHTML.stop();
 
-    //let api_token = context.globalState.get("osio_refrsh_token");
-    let api_token_meta: any = context.globalState.get("osio_token_meta");
-    if(api_token_meta.hasOwnProperty("refresh_token") && api_token_meta.hasOwnProperty("api_timestamp")){
+    function checkLastloggedIn(){
 
-        //todo :: check if diff is 24 hours
-        let api_ts_date: Date = new Date(api_token_meta["api_timestamp"]);
-        let cur_ts_date: Date = new Date();
-        let timeDiff: number = Math.abs(cur_ts_date.getMinutes() - api_ts_date.getMinutes());
-        if(timeDiff>=1440){
-            authextension.authorize_OSIO(api_token_meta, context, (data:any) => {
-                let api_token_cur = context.globalState.get("osio_token_meta");
-                return api_token_cur;
-             });
-        } else{
-            return api_token_meta;
-        }
-        
-        // authextension.authorize_OSIO(api_token_meta, context, (data:any) => {
-        // let api_token_cur = context.globalState.get("osio_token_meta");
-        // return api_token_cur;
-        // });
-    } else {
-        initAuthStatusBar("Authorize OSIO","extension.osioAuthorize");
-        vscode.window.showInformationMessage("Authorize for Openshift.io","Authorize OSIO").then((selection:any) => {
-            if(selection == "Authorize OSIO"){
-                triggerAuthOSIO(context);
+        //let api_token = context.globalState.get("osio_refrsh_token");
+        let api_token_meta: any = context.globalState.get("osio_token_meta");
+        if(api_token_meta.hasOwnProperty("refresh_token") && api_token_meta.hasOwnProperty("api_timestamp")){
+            triggerAuthStatusBar("extension.osioUnauthorize");
+            //todo :: check if diff is 24 hours
+            let api_ts_date: Date = new Date(api_token_meta["api_timestamp"]);
+            let cur_ts_date: Date = new Date();
+            let timeDiff: number = Math.abs(cur_ts_date.getMinutes() - api_ts_date.getMinutes());
+            console.log("-------timeDiff------"); //1440
+            console.log(timeDiff);
+            if(timeDiff>=1440){
+                authextension.authorize_OSIO(api_token_meta, context, (data:any) => {
+                    let api_token_cur = context.globalState.get("osio_token_meta");
+                    return api_token_cur;
+                });
+            } else{
+                return api_token_meta;
             }
-        })
-        return null;
+        } else {
+            triggerAuthStatusBar("extension.osioAuthorize");
+            vscode.window.showInformationMessage("Authorize for Openshift.io","Authorize OSIO").then((selection:any) => {
+                if(selection == "Authorize OSIO"){
+                    triggerAuthOSIO(context);
+                }
+            })
+            return null;
+        }
     }
+
 }
 
 function triggerAuthOSIO(context: any) {
@@ -96,6 +90,11 @@ export function initAuthStatusBar(title: string, cmd: string){
   f8AnalyticsStatusBarItem.text = title;
   f8AnalyticsStatusBarItem.tooltip = title;
   f8AnalyticsStatusBarItem.show();
+}
+
+export function triggerAuthStatusBar(cmd: string){
+    f8AnalyticsStatusBarItem.command = cmd;
+    //f8AnalyticsStatusBarItem.show();
 }
 
 function startServer() {

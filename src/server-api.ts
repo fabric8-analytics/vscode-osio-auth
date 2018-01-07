@@ -93,10 +93,18 @@ export class TokenController {
         let cur_api_ts: Date = new Date();
         token_meta["api_timestamp"] = cur_api_ts;
         ApiServer.contextToken.globalState.update("osio_token_meta", token_meta);
-        vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO, kindly reload your extension");
+        //vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO, kindly reload your extension");
+        vscode.window.showInformationMessage("Great!! Authorization was successful from Openshift.io, kindly reload your extension","Reload").then((selection:any) => {
+            if(selection == "Reload"){
+                //triggerAuthOSIO(context);
+                //workbench.action.reloadWindow
+                vscode.commands.executeCommand('workbench.action.reloadWindow');
+            }
+        })
         ServerHTML.stop();
         ApiServer.stop();
-        f8AnalyticsStatusBarItem.hide();
+        //f8AnalyticsStatusBarItem.hide();
+        f8AnalyticsStatusBarItem.command = "extension.osioUnauthorize";
         console.log("================ server stopped ================");
         return "sucess";
     }
