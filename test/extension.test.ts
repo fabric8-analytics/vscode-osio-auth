@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import * as vscode from "vscode";
-import * as browserSync from "browser-sync";
-import { ServerHTML } from "../src/server";
+//import * as browserSync from "browser-sync";
+//import { ServerHTML } from "../src/server";
 
 suite("OSIO Auth Extension", () => {
 
@@ -17,10 +17,10 @@ suite("OSIO Auth Extension", () => {
     });
 });
 
-suite("Server Tests", () => {
-    test("start server", () => {
-        ServerHTML.start(".", 8888, true);
-        assert.ok(browserSync.has("osio-auth-service"));
-        ServerHTML.stop();
-    });
-});
+// suite("Server Tests", () => {
+//     test("start server", () => {
+//         ServerHTML.start(".", 8888, true);
+//         assert.ok(browserSync.has("osio-auth-service"));
+//         ServerHTML.stop();
+//     });
+// });

@@ -1,31 +1,20 @@
 import * as express from "express";
+import * as fs from "fs";
 import {GET, Path, PathParam, Server } from "typescript-rest";
 import * as http from "http";
 import * as path from "path";
 import * as cors from "cors";
 import * as vscode from "vscode";
-import { ServerHTML } from "./server";
-import { f8AnalyticsStatusBarItem } from "./extension";
 
-//let contextToken: any;
+import { f8AnalyticsStatusBarItem } from "./extension";
 
 export class ApiServer {
 
     public static app: express.Application;
     public static server: http.Server = null;
     public static contextToken: any;
-    // dynamic ports (49152–65535)
     public static PORT: number = 45036;
-    //process.env.APIPORT || 3000;
-
-    // constructor(context: any) {
-    //     this.app = express();
-    //     this.config();
-    //     contextToken = context || "";
-    //     process.env.APIPORT = this.PORT;
-    //     Server.buildServices(this.app, TokenController);
-    // }
-
+    
     /**
      * Configure the express app.
      */
@@ -44,7 +33,7 @@ export class ApiServer {
         ApiServer.config();
         ApiServer.contextToken = context || "";
         process.env.APIPORT = ApiServer.PORT;
-        Server.buildServices(ApiServer.app, TokenController);
+        Server.buildServices(ApiServer.app, TokenController, OsioIdeController);
         return new Promise<any>((resolve, reject) => {
             ApiServer.server = ApiServer.app.listen(ApiServer.PORT, (err: any) => {
                 if (err) {
@@ -87,25 +76,68 @@ export class TokenController {
      */
     @Path(":token")
     @GET
-    sayHello(@PathParam("token") data: string): string {
+    fetchToken(@PathParam("token") data: string): string {
         let token_meta: any = JSON.parse(data);
         //contextToken.globalState.update("osio_refrsh_token", token_meta.refresh_token);
         let cur_api_ts: Date = new Date();
         token_meta["api_timestamp"] = cur_api_ts;
         ApiServer.contextToken.globalState.update("osio_token_meta", token_meta);
-        //vscode.window.showInformationMessage("Great!! Authorization was successful from OSIO, kindly reload your extension");
         vscode.window.showInformationMessage("Great!! Authorization was successful from Openshift.io, kindly reload your extension","Reload").then((selection:any) => {
             if(selection == "Reload"){
                 //triggerAuthOSIO(context);
-                //workbench.action.reloadWindow
                 vscode.commands.executeCommand('workbench.action.reloadWindow');
             }
         })
-        ServerHTML.stop();
         ApiServer.stop();
         //f8AnalyticsStatusBarItem.hide();
         f8AnalyticsStatusBarItem.command = "extension.osioUnauthorize";
         console.log("================ server stopped ================");
         return "sucess";
+    }
+}
+
+
+/**
+ * This is a demo operation to show how to use typescript-rest library.
+ */
+@Path("/osioide")
+export class OsioIdeController {
+    /**
+     * Send a greeting message.
+     * @param name The name that will receive our greeting message
+     */
+    @GET
+    serveStaticContent(resp: express.Response): any {
+        return `<!DOCTYPE HTML >
+        <html>
+            <head>
+                <title>OSIO</title>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            </head>
+        <body>
+        <h1></h1>
+        </body>
+            <script>
+        
+            $(document).ready(function(){
+        
+            var request = (function() {
+                var _get = {};
+                var re = /[?&]([^=&]+)(=?)([^&]*)/g;
+                while (m = re.exec(location.search))
+                    _get[decodeURIComponent(m[1])] = (m[2] == '=' ? decodeURIComponent(m[3]) : true);
+                return _get;
+            })();
+        
+            var token_meta = request.token_json?request.token_json : request.api_token;
+            //var token_meta = request.api_token;
+            var api_port = 45036;
+            $.get("http://localhost:"+api_port+"/refreshtoken/"+ token_meta, function( data ) {
+                window.close();
+            });
+        
+            });
+         </script>
+        <html>`;
     }
 }

@@ -2,7 +2,7 @@
   "name": "osio-auth-service",
   "displayName": "Authorizing OSIO",
   "description": "Authorizing OSIO",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "author": "Red Hat",
   "publisher": "redhat",
   "contributors": [
@@ -39,40 +39,10 @@
     "*",
     "onCommand:extension.osioUnauthorize",
     "onCommand:extension.osioAuthorize",
-    "onCommand:extension.stop",
-    "onCommand:extension.resume"
+    "onCommand:extension.stop"
   ],
   "main": "./out/src/extension",
   "contributes": {
-    "configuration": {
-      "type": "object",
-      "title": "PreviewServer",
-      "properties": {
-        "previewServer.isWatchConfiguration": {
-          "type": "boolean",
-          "default": true,
-          "description": "Controls whether resume the Web Server or not, when change settings."
-        },
-        "previewServer.port": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "default": 45032,
-          "description": "Port number of the Web Server."
-        },
-        "previewServer.proxy": {
-          "type": "string",
-          "default": "",
-          "description": "Wrap your vhost with a proxy URL to view your site."
-        },
-        "previewServer.sync": {
-          "type": "boolean",
-          "default": true,
-          "description": "Whether synchronized or not."
-        }
-      }
-    },
     "commands": [
       {
         "command": "extension.osioUnauthorize",
@@ -85,10 +55,6 @@
       {
         "command": "extension.stop",
         "title": "vscode-preview-server: Stop the web server"
-      },
-      {
-        "command": "extension.resume",
-        "title": "vscode-preview-server: Resume the web server"
       }
     ],
     "keybindings": [
@@ -103,10 +69,6 @@
       {
         "command": "extension.stop",
         "key": "ctrl+shift+g"
-      },
-      {
-        "command": "extension.resume",
-        "key": "ctrl+shift+h"
       }
     ],
     "menus": {
@@ -133,19 +95,15 @@
     }
   },
   "scripts": {
-    "build": "tsc -p ./ && npm run html",
     "vscode:prepublish": "tsc -p ./",
-    "compile": "npm run build && tsc -watch -p ./",
+    "compile": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test",
-    "html": "copyfiles src/*.html src/*.css out/"
+    "test": "node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "@types/browser-sync": "0.0.38",
     "@types/cors": "^2.8.1",
     "@types/mocha": "^2.2.32",
     "@types/node": "^7.0.5",
-    "copyfiles": "^1.2.0",
     "mocha": "^2.3.3",
     "tslint": "^4.3.1",
     "typescript": "^2.6.1",
@@ -153,7 +111,6 @@
   },
   "dependencies": {
     "@types/express": "4.0.37",
-    "browser-sync": "^2.18.8",
     "express": "^4.16.1",
     "typescript-rest": "^1.1.2"
   }
