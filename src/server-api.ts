@@ -6,6 +6,8 @@ import * as path from "path";
 import * as cors from "cors";
 import * as vscode from "vscode";
 
+import { Template } from './template';
+
 import { f8AnalyticsStatusBarItem } from "./extension";
 
 export class ApiServer {
@@ -108,36 +110,6 @@ export class OsioIdeController {
      */
     @GET
     serveStaticContent(resp: express.Response): any {
-        return `<!DOCTYPE HTML >
-        <html>
-            <head>
-                <title>OSIO</title>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            </head>
-        <body>
-        <h1></h1>
-        </body>
-            <script>
-        
-            $(document).ready(function(){
-        
-            var request = (function() {
-                var _get = {};
-                var re = /[?&]([^=&]+)(=?)([^&]*)/g;
-                while (m = re.exec(location.search))
-                    _get[decodeURIComponent(m[1])] = (m[2] == '=' ? decodeURIComponent(m[3]) : true);
-                return _get;
-            })();
-        
-            var token_meta = request.token_json?request.token_json : request.api_token;
-            //var token_meta = request.api_token;
-            var api_port = 45036;
-            $.get("http://localhost:"+api_port+"/refreshtoken/"+ token_meta, function( data ) {
-                window.close();
-            });
-        
-            });
-         </script>
-        <html>`;
+        return Template.REDIRECT_URI_TEMPLATE;
     }
 }

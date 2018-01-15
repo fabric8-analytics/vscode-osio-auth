@@ -16,9 +16,19 @@ export function activate(context: vscode.ExtensionContext) : any {
     console.log(logInStatus);
 
     let disposable2: any = vscode.commands.registerCommand("extension.osioUnauthorize", () => {
-        context.globalState.update("osio_token_meta", "");
-        triggerAuthStatusBar("extension.osioAuthorize");
-        vscode.window.showInformationMessage("Successfully unauthorized extension form OSIO.");
+
+        let logInStatus = checkLastloggedIn();
+        if(logInStatus && logInStatus.hasOwnProperty("refresh_token")){
+            vscode.window.showInformationMessage("You are authorized with Openshift.io, would you like to unauthorize","Unauthorize OSIO").then((selection:any) => {
+                if(selection == "Unauthorize OSIO"){
+                    context.globalState.update("osio_token_meta", "");
+                    //triggerAuthStatusBar("extension.osioAuthorize");
+                    vscode.window.showInformationMessage("Successfully unauthorized extension form OSIO.");
+                }
+            })
+        } else {
+            triggerAuthStatusBar("extension.osioUnauthorize");
+        }
     });
 
     let disposable3: any = vscode.commands.registerCommand("extension.stop", () => {
