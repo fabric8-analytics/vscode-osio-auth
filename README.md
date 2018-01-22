@@ -10,7 +10,7 @@ Quick Start
 
 Features
 =========
-![ screencast ](https://raw.githubusercontent.com/fabric8-analytics/vscode-osio-auth/master/images/authOsio.png)
+![ screencast ](https://raw.githubusercontent.com/fabric8-analytics/vscode-osio-auth/master/images/authOsio.gif)
 
 * This extension enables authorization of OSIO services from VSCode.
 
