@@ -16,7 +16,7 @@ export class ApiServer {
     public static server: http.Server = null;
     public static contextToken: any;
     public static PORT: number = 45036;
-    
+
     /**
      * Configure the express app.
      */
@@ -84,7 +84,7 @@ export class TokenController {
         let cur_api_ts: Date = new Date();
         token_meta["api_timestamp"] = cur_api_ts;
         ApiServer.contextToken.globalState.update("osio_token_meta", token_meta);
-        vscode.window.showInformationMessage("Great!! Authorization was successful from Openshift.io, kindly reload your extension","Reload").then((selection:any) => {
+        vscode.window.showInformationMessage("Successfully authenticated with Openshift.io. Please reload to activate.","Reload").then((selection:any) => {
             if(selection == "Reload"){
                 //triggerAuthOSIO(context);
                 vscode.commands.executeCommand('workbench.action.reloadWindow');
