@@ -46,11 +46,11 @@
     "commands": [
       {
         "command": "extension.osioUnauthorize",
-        "title": "OSIO-AUTH: Unauthorize OSIO Services"
+        "title": "Unauthorize Openshift.io Services"
       },
       {
         "command": "extension.osioAuthorize",
-        "title": "OSIO-AUTH: Authorize OSIO Services"
+        "title": "Authorize Openshift.io Services"
       },
       {
         "command": "extension.stop",
