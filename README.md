@@ -20,8 +20,8 @@ The following commands are available:
 
 |Keyboard Shortcuts|Command|Usage|
 |-------|-----|-----------------|
-|`Ctrl+Shift+K` on Linux and `Cmd+Shift+K` on Mac|`OSIO-AUTH: Authorize OSIO Services`|Authorize OpenShift.io services in VS Code|
-|`Ctrl+Shift+J` on Linux and `Cmd+Shift+J` on Mac|`OSIO-AUTH: Unauthorize OSIO Services`|Unauthorize OpenShift.io services in VS Code|
+|`Ctrl+Shift+K` on Linux and `Cmd+Shift+K` on Mac|`Authorize OpenShift.io Services`|Authorize OpenShift.io services in VS Code|
+|`Ctrl+Shift+J` on Linux and `Cmd+Shift+J` on Mac|`Unauthorize OpenShift.io Services`|Unauthorize OpenShift.io services in VS Code|
 
 ## Contributing
 
