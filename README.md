@@ -6,11 +6,12 @@ Red Hat OpenShift.io service authorization extension enables authorization of [O
 
 ![ screencast ](https://raw.githubusercontent.com/fabric8-analytics/vscode-osio-auth/master/images/authOsio.gif)
 
-Quick Start
-============
+## Quick Start
+
 1. Install the Extension.
 
  NOTE: OpenShift.io services extension includes the OpenShift.io service authorization. Therefore, when OpenShift.io services extension is installed it automatically enables authorization of OpenShift.io services from VS Code
+ 
 2. Authorization is activated when you open a workspace.
 
 ## Available commands
@@ -19,8 +20,8 @@ The following commands are available:
 
 |Keyboard Shortcuts|Command|Usage|
 |-------|-----|-----------------|
-|`Ctrl+Shift+P` on Linux and `Cmd+Shift+P` on Mac|`OSIO-AUTH: Authorize OSIO Services`|Authorize OpenShift.io services in VS Code|
-|`Ctrl+Shift+P` on Linux and `Cmd+Shift+P` on Mac|`OSIO-AUTH: Unauthorize OSIO Services`|Unauthorize OpenShift.io services in VS Code|
+|`Ctrl+Shift+K` on Linux and `Cmd+Shift+K` on Mac|`OSIO-AUTH: Authorize OSIO Services`|Authorize OpenShift.io services in VS Code|
+|`Ctrl+Shift+J` on Linux and `Cmd+Shift+J` on Mac|`OSIO-AUTH: Unauthorize OSIO Services`|Unauthorize OpenShift.io services in VS Code|
 
 ## Contributing
 
