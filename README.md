@@ -1,33 +1,33 @@
-# vscode OSIO Auth
+# OpenShift.io service authorization
 
-This extension enables authorization of OSIO services from VSCode.
+Red Hat [OpenShift.io](https://openshift.io/) is a highly collaborative open-source, web-based application life cycle management solution. It is a next-generation product for developers to seamlessly manage end-to-end application development.
 
+Red Hat OpenShift.io service authorization extension enables authorization of [OpenShift.io services](https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension) from VS Code.
+
+![ screencast ](https://raw.githubusercontent.com/fabric8-analytics/vscode-osio-auth/master/images/authOsio.gif)
 
 Quick Start
 ============
-1. Install the Extension
-2. Extension is activated when you open a workspace
+1. Install the Extension.
 
-Features
-=========
-![ screencast ](https://raw.githubusercontent.com/fabric8-analytics/vscode-osio-auth/master/images/authOsio.gif)
+ NOTE: OpenShift.io services extension includes the OpenShift.io service authorization. Therefore, when OpenShift.io services extension is installed it automatically enables authorization of OpenShift.io services from VS Code
+2. Authorization is activated when you open a workspace.
 
-* This extension enables authorization of OSIO services from VSCode.
+## Available commands
 
-
-Available commands
-==========================
 The following commands are available:
 
-- Use command (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) `OSIO-AUTH: Authorize OSIO Services` to authorize OSIO
-- Use command (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac) `OSIO-AUTH: Unauthorize OSIO Services` to unauthorize OSIO
-
+|Keyboard Shortcuts|Command|Usage|
+|-------|-----|-----------------|
+|`Ctrl+Shift+P` on Linux and `Cmd+Shift+P` on Mac|`OSIO-AUTH: Authorize OSIO Services`|Authorize OSIO in VS Code|
+|`Ctrl+Shift+P` on Linux and `Cmd+Shift+P` on Mac|`OSIO-AUTH: Unauthorize OSIO Services`|Unauthorize OSIO in VS Code|
 
 ## Contributing
 
 This is an open source project, contributions and questions are welcome. If you have any feedback, suggestions, or ideas, reach us on:
-* Chat: [fabric8-analytics mattermost  channel](https://chat.openshift.io/developers/channels/fabric8-analytics).
-* Log issues:  [GitHub Repository](https://github.com/fabric8-analytics/vscode-osio-auth/issues).
+* Chat: MattterMost channel
+[#openshiftio  ](https://chat.openshift.io/developers/channels/town-square)
+* Log issues:  [GitHub Repository](https://github.com/fabric8-analytics/vscode-osio-auth/issues)
 
 ### Develop this extension
 
