@@ -1,10 +1,11 @@
 {
   "name": "osio-auth-service",
-  "displayName": "Authorizing OSIO",
-  "description": "Authorizing OSIO",
+  "displayName": "OpenShift.io Service Authorization",
+  "description": "Enables authorization of OpenShift.io services",
   "version": "0.0.17",
   "author": "Red Hat",
   "publisher": "redhat",
+  "preview": true,
   "contributors": [
     {
       "name": "Jaivardhan Kumar",
@@ -33,7 +34,7 @@
   "keywords": [
     "OSIO",
     "Authorization",
-    "VSCode"
+    "OpenShift"
   ],
   "activationEvents": [
     "*",
