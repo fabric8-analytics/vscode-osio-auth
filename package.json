@@ -12,7 +12,7 @@
       "email": "jakumar@redhat.com"
     }
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "galleryBanner": {
     "color": "#000000",
     "theme": "dark"
