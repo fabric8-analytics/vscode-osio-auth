@@ -12,8 +12,6 @@ export function activate(context: vscode.ExtensionContext) : any {
 
     initAuthStatusBar("Openshift.io","extension.osioAuthorize");
     let logInStatus = checkLastloggedIn();
-    console.log("------------logInStatus---------");
-    console.log(logInStatus);
 
     let disposable2: any = vscode.commands.registerCommand("extension.osioUnauthorize", () => {
 
@@ -49,8 +47,6 @@ export function activate(context: vscode.ExtensionContext) : any {
             let api_ts_date: Date = new Date(api_token_meta["api_timestamp"]);
             let cur_ts_date: Date = new Date();
             let timeDiff: number = Math.abs(cur_ts_date.getMinutes() - api_ts_date.getMinutes());
-            console.log("-------timeDiff------"); //1440
-            console.log(timeDiff);
             if(timeDiff>=1440){
                 authextension.authorize_OSIO(api_token_meta, context, (data:any) => {
                     let api_token_cur = context.globalState.get("osio_token_meta");
