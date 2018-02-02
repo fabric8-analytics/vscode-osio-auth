@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) : any {
                 if(selection == "Unauthorize"){
                     context.globalState.update("osio_token_meta", "");
                     //triggerAuthStatusBar("extension.osioAuthorize");
-                    vscode.window.showInformationMessage("Successfully unauthorized extension form OpenShift.io. Please reload","Reload").then((selection:any) => {
+                    vscode.window.showInformationMessage("Successfully unauthorized extension from OpenShift.io. Please reload","Reload").then((selection:any) => {
                         if(selection == "Reload"){
                             //triggerAuthOSIO(context);
                             vscode.commands.executeCommand('workbench.action.reloadWindow');

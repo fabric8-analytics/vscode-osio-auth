@@ -34,7 +34,7 @@
   "keywords": [
     "OSIO",
     "Authorization",
-    "OpenShift"
+    "OpenShift.io"
   ],
   "activationEvents": [
     "*",
