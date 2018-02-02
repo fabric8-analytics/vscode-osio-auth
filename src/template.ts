@@ -10,7 +10,7 @@ export namespace Template {
     export const REDIRECT_URI_TEMPLATE = `<!DOCTYPE HTML >
     <html>
         <head>
-            <title>OSIO</title>
+            <title>OpenShift.io</title>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         </head>
     <body>
