@@ -2,7 +2,7 @@
   "name": "osio-auth-service",
   "displayName": "OpenShift.io Service Authorization",
   "description": "Enables authorization of OpenShift.io services",
-  "version": "0.0.17",
+  "version": "0.0.1",
   "author": "Red Hat",
   "publisher": "redhat",
   "preview": true,
@@ -47,11 +47,11 @@
     "commands": [
       {
         "command": "extension.osioUnauthorize",
-        "title": "Unauthorize Openshift.io Services"
+        "title": "Unauthorize OpenShift.io Services"
       },
       {
         "command": "extension.osioAuthorize",
-        "title": "Authorize Openshift.io Services"
+        "title": "Authorize OpenShift.io Services"
       },
       {
         "command": "extension.stop",
