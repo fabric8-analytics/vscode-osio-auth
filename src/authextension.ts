@@ -35,26 +35,26 @@ export module authextension {
         options['headers'] = {'Content-Type': 'application/json'};
         options['body'] = JSON.stringify(bodyData);
         request(options, (err: any, httpResponse: any, body: any) => {
-          if ((httpResponse.statusCode == 200 || httpResponse.statusCode == 202)) {
-            let resp = JSON.parse(body);
-            if (resp && resp.token) {
-                // Apiendpoint.STACK_API_TOKEN = resp.token.access_token;
-                // Apiendpoint.OSIO_REFRESH_TOKEN = resp.token.refresh_token;
-                // process.env['RECOMMENDER_API_TOKEN'] = Apiendpoint.STACK_API_TOKEN;
-                // context.globalState.update('f8_access_token', Apiendpoint.STACK_API_TOKEN);
-                context.globalState.update('osio_token_meta', resp);
-                cb(true);
-            } else {
-                vscode.window.showErrorMessage(`Failed with Status code : ${httpResponse.statusCode}`);
+            if(err){
                 cb(null);
+            }else{
+                if ((httpResponse.statusCode == 200 || httpResponse.statusCode == 202)) {
+                    let resp = JSON.parse(body);
+                    if (resp && resp.token) {
+                        context.globalState.update('osio_token_meta', resp);
+                        cb(true);
+                    } else {
+                        vscode.window.showErrorMessage(`Failed with Status code : ${httpResponse.statusCode}`);
+                        cb(null);
+                    }
+                } else if(httpResponse.statusCode == 401){
+                    vscode.window.showErrorMessage(`Looks like your token is not proper, kindly authorize again`);
+                    cb(null);
+                } else {   
+                    vscode.window.showErrorMessage(`Looks like your token is not proper, kindly authorize again, Status: ${httpResponse.statusCode}`);
+                    cb(null);
+                }
             }
-          } else if(httpResponse.statusCode == 401){
-              vscode.window.showErrorMessage(`Looks like your token is not proper, kindly authorize again`);
-              cb(null);
-          } else {   
-            vscode.window.showErrorMessage(`Looks like your token is not proper, kindly authorize again, Status: ${httpResponse.statusCode}`);
-            cb(null);
-          }
         });
     }
 }
