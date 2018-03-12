@@ -11,20 +11,13 @@ export module authextension {
     export let refresh_access_token_osio: any;
 
     authorize_OSIO = (token_meta: any, context: any, cb: any) => {
-        // let osioTokenExt = vscode.extensions.getExtension('redhat.osio-auth-service');
-        // if(osioTokenExt){
-        // let importedApi = osioTokenExt.exports;
-            if(token_meta) {
-                Apiendpoint.OSIO_REFRESH_TOKEN = token_meta.refresh_token;
-                refresh_access_token_osio(Apiendpoint, context, cb);
-            } else {
-                cb(null);
-            }
-        // } else {
-        //     cb(null);
-        // }
-        
-    }
+        if(token_meta) {
+            Apiendpoint.OSIO_REFRESH_TOKEN = token_meta.refresh_token;
+            refresh_access_token_osio(Apiendpoint, context, cb);
+        } else {
+            cb(null);
+        }
+    };
 
 
     refresh_access_token_osio = (Apiendpoint: any, context: any, cb: any) => {
@@ -56,5 +49,5 @@ export module authextension {
                 }
             }
         });
-    }
+    };
 }
