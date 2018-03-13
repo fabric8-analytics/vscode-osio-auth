@@ -11,7 +11,7 @@ export module authextension {
     export let refresh_access_token_osio: any;
 
     authorize_OSIO = (token_meta: any, context: any, cb: any) => {
-        if(token_meta) {
+        if(token_meta && token_meta.refresh_token) {
             Apiendpoint.OSIO_REFRESH_TOKEN = token_meta.refresh_token;
             refresh_access_token_osio(Apiendpoint, context, cb);
         } else {
@@ -31,7 +31,7 @@ export module authextension {
             if(err){
                 cb(null);
             }else{
-                if ((httpResponse.statusCode == 200 || httpResponse.statusCode == 202)) {
+                if ((httpResponse.statusCode === 200 || httpResponse.statusCode === 202)) {
                     let resp = JSON.parse(body);
                     if (resp && resp.token) {
                         context.globalState.update('osio_token_meta', resp);
@@ -40,7 +40,7 @@ export module authextension {
                         vscode.window.showErrorMessage(`Failed with Status code : ${httpResponse.statusCode}`);
                         cb(null);
                     }
-                } else if(httpResponse.statusCode == 401){
+                } else if(httpResponse.statusCode === 401){
                     vscode.window.showErrorMessage(`Looks like your token is not proper, kindly authorize again`);
                     cb(null);
                 } else {   

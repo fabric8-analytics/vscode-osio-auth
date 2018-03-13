@@ -18,11 +18,11 @@ export function activate(context: vscode.ExtensionContext): any {
         let logInStatus = checkLastloggedIn();
         if(logInStatus && logInStatus.hasOwnProperty('refresh_token')){
             vscode.window.showInformationMessage('You are authorized with OpenShift.io, would you like to unauthorize', 'Unauthorize').then((selection:any) => {
-                if(selection == 'Unauthorize'){
+                if(selection === 'Unauthorize'){
                     context.globalState.update('osio_token_meta', '');
                     //triggerAuthStatusBar("extension.osioAuthorize");
                     vscode.window.showInformationMessage('Successfully unauthorized extension from OpenShift.io. Please reload', 'Reload').then((selection:any) => {
-                        if (selection == 'Reload'){
+                        if (selection === 'Reload'){
                             //triggerAuthOSIO(context);
                             vscode.commands.executeCommand('workbench.action.reloadWindow');
                         }
@@ -63,7 +63,7 @@ export function activate(context: vscode.ExtensionContext): any {
         } else {
             triggerAuthStatusBar('extension.osioAuthorize');
             vscode.window.showInformationMessage('Authorize for OpenShift.io', 'Authorize').then((selection:any) => {
-                if(selection == 'Authorize'){
+                if(selection === 'Authorize'){
                     triggerAuthOSIO(context, api_token_meta);
                 }
             });

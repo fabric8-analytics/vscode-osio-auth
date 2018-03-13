@@ -1,5 +1,4 @@
 import * as express from 'express';
-// import * as fs from 'fs';
 import {GET, Path, PathParam, Server } from 'typescript-rest';
 import * as http from 'http';
 import * as path from 'path';
@@ -85,11 +84,11 @@ export class TokenController {
         token_meta['api_timestamp'] = cur_api_ts;
         ApiServer.contextToken.globalState.update('osio_token_meta', token_meta);
         vscode.window.showInformationMessage('Successfully authenticated with OpenShift.io. Please reload to activate.', 'Reload').then((selection:any) => {
-            if(selection == 'Reload'){
+            if(selection === 'Reload'){
                 //triggerAuthOSIO(context);
                 vscode.commands.executeCommand('workbench.action.reloadWindow');
             }
-        })
+        });
         ApiServer.stop();
         //f8AnalyticsStatusBarItem.hide();
         f8AnalyticsStatusBarItem.command = 'extension.osioUnauthorize';
