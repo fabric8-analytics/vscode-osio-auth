@@ -14,7 +14,7 @@ export class ApiServer {
     public static app: express.Application;
     public static server: http.Server = null;
     public static contextToken: any;
-    public static PORT: number = 45036;
+    public static PORT: any = 45036;
 
     /**
      * Configure the express app.
