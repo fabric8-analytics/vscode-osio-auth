@@ -4,7 +4,7 @@ Red Hat [OpenShift.io](https://openshift.io/) is a highly collaborative open-sou
 
 The OpenShift.io Service Authorization extension enables authorization of [OpenShift.io services](https://github.com/fabric8-analytics/fabric8-analytics-vscode-extension) from VSCode.
 
-![ screencast ](https://raw.githubusercontent.com/fabric8-analytics/vscode-osio-auth/master/images/authOsio.gif)
+![ screencast ](https://raw.githubusercontent.com/fabric8-analytics/vscode-osio-auth/master/images/authOsio.png)
 
 ## Quick Start
 
