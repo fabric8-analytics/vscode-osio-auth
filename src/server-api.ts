@@ -41,7 +41,6 @@ export class ApiServer {
                     return reject(err);
                 }
                 // tslint:disable-next-line:no-console
-                console.log(`Listening to http://${ApiServer.server.address().address}:${ApiServer.server.address().port}`);
                 return resolve();
             });
         });
